@@ -1,28 +1,70 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Cadastro</title>
 </head>
 <body>
-    <p>Teste para saber se vai funcionar</p>
 
+    <h2>Agendamento</h2>
+    <form method="post" action="{% url 'salvar' %}">
+        {% csrf_token %}
+        <label for="id_nome">Nome:</label>
+        <input type="text" name="nome" id="id_nome" required>
+        <br>
+        <label for="id_data">Data:</label>
+        <input type="date" name="data" id="id_data" required>
+        <br>
+        <label for="id_hora">Hora:</label>
+        <select name="hora" id="id_hora" {% if hora_selecionada %} disabled{% endif %}>
+            <option value="" disabled selected>Selecione um horário</option>
+        <!-- Adicione as opções de horários disponíveis -->
+            {% if pessoa.hora == '07:00' %}selected{% endif %}
+            <option value="07:00">07:00</option>
+            <option value="07:45">07:45</option>
+            <option value="08:30">08:30</option>
+            <option value="09:15">09:15</option>
+            <option value="10:00">10:00</option>
+            <option value="10:45">10:45</option>
+            <option value="11:30">11:30</option>
+            <option value="12:15">12:15</option>
+            <option value="13:00">13:00</option>
+            <option value="13:45">13:45</option>
+            <option value="14:30">14:30</option>
+            <option value="15:15">15:15</option>
+            <option value="16:00">16:00</option>
+            <option value="16:45">16:45</option>
+            <option value="17:30">17:30</option>
+            <option value="18:15">18:15</option>
+            <option value="19:00">19:00</option>
+            <option value="19:45">19:45</option>
+            <option value="20:30">20:30</option>
+            <option value="21:15">21:15</option>
+        </select>
+        <button type="submit" >Salvar</button>
+    </form>
+
+    
+    <h3>Lista de Pessoas Agendadas:</h3>
     <ul>
-        {% for pessoa in pessoas %}
-        <li>{{ pessoa.id }} - {{pessoa.nome}}
-             <a href="{% url 'editar' pessoa.id %}">Editar</a>
-             <a href="{% url 'delete' pessoa.id %}">Deletar</a>    
-        </li>
+        {% for pessoa in pessoa %}
+            <li>{{ pessoa.nome }} - {{ pessoa.data }} - {{ pessoa.hora }}</li>
+            <td>
+                <a href="{% url 'editar' pessoa.id %}">Editar</a>
+                <a href="{% url 'deletar' pessoa.id %}">Deletar</a>
+              </td>
         {% endfor %}
     </ul>
 
-    <form action="{% url 'salvar' %}" method="POST">
-        {% csrf_token %}
-        <input type="text" name="nome">
-        <button type="submit">Enviar</button>
-    </form>
 
+
+    <h3>Lista de horario disponivel:</h3>
+    <ul>
+        {% for horario in horarios_disponiveis %}
+        <li>{{ horario }}</li>
+        {% endfor %}
+    </ul>
 </body>
 </html>

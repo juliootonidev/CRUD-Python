@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\Julio Otoni\Documents\Projeto Pessoal\Crud-Py\Barbearia"
+VIRTUAL_ENV="C:\Users\Julio Otoni\Documents\TCC-Fatec\Barbearia"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

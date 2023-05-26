@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-bt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update</title>
+</head>
+<body>
+    {{pessoa.id}} - {{ pessoa.nome }} - {{ pessoa.data }} - {{ pessoa.hora }}
+
+    <form action="{% url 'editar' pessoa.id %}" method="POST">
+        {% csrf_token %}
+        <label for="id_nome">Nome:</label>
+        <input type="text" name="nome" id="id_nome" value="{{pessoa.nome}}">
+        <br>
+        <label for="id_data">Data:</label>
+        <input type="date" name="data" id="id_data" value="{{pessoa.data }}">
+        <br>
+        <label for="id_hora">Hora:</label>
+        <input type="time" name="hora" id="id_hora" value="{{pessoa.hora }} ">
+        <br>
+        <button type="submit" onclick="exibirAlerta()">Salvar</button>
+    </form>
+
+    
+</body>
+</html>
